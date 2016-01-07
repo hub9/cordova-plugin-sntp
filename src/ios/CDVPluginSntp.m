@@ -17,7 +17,7 @@
                                 callbackId:command.callbackId];
 }
 
-- (void)getClockOffset:(CDVInvokedUrlCommand*)command
+- (void)getTimeOffset:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                          messageAsInt:0];
