@@ -6,8 +6,9 @@
   <name>SNTPTime</name>
   <description>Cordova Plugin to connect to SNTP servers and calculate device clock offset.</description>
 
-  <js-module name="cordova-plugin-sntp" src="www/cordova-plugin-sntp.js">
-    <clobbers target="cordova.plugins.cordova-plugin-sntp" />
+  <js-module name="sntp" src="www/cordova-plugin-sntp.js">
+    <clobbers target="cordova.plugins.sntp" />
+
   </js-module>
 
   <platform name="android">

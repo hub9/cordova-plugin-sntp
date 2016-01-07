@@ -70,7 +70,11 @@ public class CDVPluginSntp extends CordovaPlugin {
                 JSONObject response = new JSONObject();
                 long now = client.getNtpTime() + SystemClock.elapsedRealtime() -
                     client.getNtpTimeReference();
-                response.put("time", now);
+                try {
+                    response.put("time", now);
+                } catch(JSONException ex) {
+                    callbackContext.error("Error creating JSON object.");
+                }
                 callbackContext.success(response);
             }
         });
@@ -87,7 +91,11 @@ public class CDVPluginSntp extends CordovaPlugin {
             public void run() {
                 JSONObject response = new JSONObject();
                 long offset = client.getClockOffset();
-                response.put("offset", offset);
+                try {
+                    response.put("offset", offset);
+                } catch(JSONException ex) {
+                    callbackContext.error("Error creating JSON object.");
+                }
                 callbackContext.success(response);
             }
         });

@@ -14,4 +14,4 @@ sntp.getClockOffset = function(success, error) {
     exec(success, error, "cordova-plugin-sntp", "getClockOffset", []);
 };
 
-exports.sntp = sntp;
+module.exports = sntp;
