@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="co.hub9.cordovaPluginSntp"
+    version="0.0.1">
+
+  <name>cordova-plugin-sntp</name>
+  <description>Cordova Plugin to connect to SNTP servers and calculate device clock offset.</description>
+
+  <js-module name="cordova-plugin-sntp" src="www/cordova-plugin-sntp.js">
+    <clobbers target="cordova.plugins.cordova-plugin-sntp" />
+  </js-module>
+  
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="cordova-plugin-sntp">
+        <param name="android-package" value="co.hub9.cordova.CDVPluginSntp" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml" />
+    <source-file src="src/android/CDVPluginSntp.java" target-dir="src/co/hub9/cordova" />
+    <source-file src="src/android/SntpClient.java" target-dir="src/co/hub9/cordova" />
+  </platform>
+  
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="cordova-plugin-sntp">
+        <param name="ios-package" value="cordova-plugin-sntp" />
+      </feature>
+    </config-file>
+    <source-file src="src/ios/CDVPluginSntp.m" />
+  </platform>
+</plugin>
