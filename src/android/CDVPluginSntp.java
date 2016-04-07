@@ -6,6 +6,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 
 
@@ -20,7 +21,7 @@ public class CDVPluginSntp extends CordovaPlugin {
             case "setServer":
                 server = args.getString(0);
                 timeout = args.getInt(1);
-                callbackContext.success(message);
+                callbackContext.success();
                 return true;
 
             case "getTime":
@@ -28,7 +29,7 @@ public class CDVPluginSntp extends CordovaPlugin {
                 return true;
 
             case "getClockOffset":
-                getOffset(callbackContext);
+                getClockOffset(callbackContext);
                 return true;
         }
         return false;
@@ -48,9 +49,8 @@ public class CDVPluginSntp extends CordovaPlugin {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (!client.requestTime(ntpServer)) {
+                if (!client.requestTime(server, timeout)) {
                     callbackContext.error("Error contacting SNTP Server.");
-                    return false;
                 }
 
                 runnable.run();
@@ -60,32 +60,43 @@ public class CDVPluginSntp extends CordovaPlugin {
 
     /**
      * Starts a background thread to connect into SNTP server and get the time.
-     * 
+     *
      * @param callbackContext Context to deliver async response.
      */
     private void getTime(final CallbackContext callbackContext) {
         connect(callbackContext, new Runnable() {
             @Override
             public void run() {
+                JSONObject response = new JSONObject();
                 long now = client.getNtpTime() + SystemClock.elapsedRealtime() -
                     client.getNtpTimeReference();
-
-                callbackContext.success(now);
+                try {
+                    response.put("time", now);
+                } catch(JSONException ex) {
+                    callbackContext.error("Error creating JSON object.");
+                }
+                callbackContext.success(response);
             }
         });
     }
 
     /**
      * Starts a background thread to connect into SNTP server and calculate system clock offset.
-     * 
+     *
      * @param callbackContext Context to deliver async response.
      */
     private void getClockOffset(final CallbackContext callbackContext) {
         connect(callbackContext, new Runnable() {
             @Override
             public void run() {
+                JSONObject response = new JSONObject();
                 long offset = client.getClockOffset();
-                callbackContext.success(offset);
+                try {
+                    response.put("offset", offset);
+                } catch(JSONException ex) {
+                    callbackContext.error("Error creating JSON object.");
+                }
+                callbackContext.success(response);
             }
         });
     }
