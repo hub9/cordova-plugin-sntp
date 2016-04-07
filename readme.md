@@ -16,12 +16,12 @@ Initialization
 ```javascript
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    // Set the SNTP server and the timeout
+    // Set the SNTP server and timeout
     cordova.plugins.sntp.setServer("a.st1.ntp.br", 10000);
 }
 ```
 
-Get time since epoch in milliseconds
+Get time since epoch in milliseconds:
 ```javascript
 cordova.plugins.sntp.getTime(
     function(time) {
