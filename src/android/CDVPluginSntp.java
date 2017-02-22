@@ -7,7 +7,7 @@ import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONExce    ption;
+import org.json.JSONException;
 
 
 public class CDVPluginSntp extends CordovaPlugin {
