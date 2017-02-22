@@ -7,32 +7,33 @@ import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONException;
+import org.json.JSONExce    ption;
 
 
 public class CDVPluginSntp extends CordovaPlugin {
     private final SntpClient client = new SntpClient();
     private String server;
     private Integer timeout;
+    
+    public static final String SET_SERVER = "setServer";
+    public static final String GET_TIME = "getTime";
+    public static final String GET_CLOCK_OFFSET = "getClockOffset";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        switch (action) {
-            case "setServer":
-                server = args.getString(0);
-                timeout = args.getInt(1);
-                callbackContext.success();
-                return true;
-
-            case "getTime":
-                getTime(callbackContext);
-                return true;
-
-            case "getClockOffset":
-                getClockOffset(callbackContext);
-                return true;
+        if (action.equals(SET_SERVER) {
+            server = args.getString(0);
+            timeout = args.getInt(1);
+            callbackContext.success();
+        } else if (action.equals(GET_TIME)) {
+            getTime(callbackContext);
+        } else if (action.equals(GET_CLOCK_OFFSET)) {
+            getClockOffset(callbackContext);
+        } else {
+            return false;
         }
-        return false;
+    
+        return true;
     }
 
     /**
