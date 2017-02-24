@@ -21,7 +21,7 @@ public class CDVPluginSntp extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals(SET_SERVER) {
+        if (action.equals(SET_SERVER)) {
             server = args.getString(0);
             timeout = args.getInt(1);
             callbackContext.success();
