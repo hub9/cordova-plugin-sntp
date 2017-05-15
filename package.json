@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-sntp",
+  "version": "0.0.1",
+  "description": "Cordova SNTP Plugin",
+  "cordova": {
+    "id": "cordova-plugin-sntp",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hub9co/cordova-plugin-sntp"
+  },
+  "keywords": [
+    "cordova",
+    "sntp",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Rômulo Fernandes Ruas da Costa",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  }
+}
